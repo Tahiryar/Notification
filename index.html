@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="btn">
+        <button onclick="showToast('success')">Success</button>
+        <button onclick="showToast('error')">Error</button>
+        <button onclick="showToast('invalid')">Invalid</button>
+    </div>
+    <div id="toastbox"></div>
+    <script>
+        const toastbox = document.getElementById('toastbox');
+
+        function showToast(type) {
+            let toast = document.createElement("div");
+            toast.classList.add('toast');
+            
+            let msg, icon;
+            if (type === 'success') {
+                msg = "Successfully Submitted";
+                icon = '<i class="fa-solid fa-circle-check"></i>';
+                toast.classList.add('success');
+            } else if (type === 'error') {
+                msg = "Please fix the error!";
+                icon = '<i class="fa-sharp fa-solid fa-circle-xmark"></i>';
+                toast.classList.add('error');
+            } else if (type === 'invalid') {
+                msg = "Invalid input! Check again";
+                icon = '<i class="fa-solid fa-exclamation"></i>';
+                toast.classList.add('invalid');
+            }
+
+            toast.innerHTML = icon + msg;
+            toastbox.appendChild(toast);
+
+            // Remove the toast after animation
+            setTimeout(() => {
+                toastbox.removeChild(toast);
+            }, 5000); // Adjust duration if needed
+        }
+    </script>
+</body>
+</html>
